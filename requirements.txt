@@ -37,3 +37,4 @@ typing_extensions
 tzdata
 virtualenv
 django-cors-headers
+gunicorn
