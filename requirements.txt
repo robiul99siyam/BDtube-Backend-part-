@@ -1,3 +1,4 @@
+corsheaders
 channels
 beautifulsoup4
 certifi
