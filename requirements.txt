@@ -1,12 +1,11 @@
-corsheaders
+daphne
 channels
-beautifulsoup4
+﻿﻿beautifulsoup4
 certifi
 crispy-bootstrap5
 distlib
 dj-database-url
 Django
-daphne
 django-bootstrap4
 django-crispy-forms
 django-email
@@ -38,3 +37,4 @@ sqlparse
 typing_extensions
 tzdata
 virtualenv
+django-cors-headers
