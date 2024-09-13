@@ -13,11 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^*-%*4@&(kwe#$_q251ocywn)0v5n^-+ug7)y56gf5hkirqzx1'
 
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
-# CSRF_TRUSTED_ORIGINS = ['https://bdtube-backend.onrender.com','https://*.127.0.0.1']
-# ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 # Application definition
 
