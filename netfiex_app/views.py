@@ -8,8 +8,8 @@ from .serializer import categorySerializer, contentSerializer, reviewSeriailzer,
 from rest_framework import filters
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
-
-
+from django.db.models import Prefetch
+from django.contrib.auth.models import User
 class CategoryViewsets(APIView):
     @method_decorator(cache_page(15))
     def get(self, request, pk=None, format=None):
@@ -47,27 +47,34 @@ class CategoryViewsets(APIView):
 
 
 class ContentViewSet(viewsets.ModelViewSet):
-    # queryset = contentModel.objects.all()
-    queryset = contentModel.objects.select_related('category', 'author').prefetch_related('view_count').all()
+    # queryset = contentModel.objects.select_related('category', 'author').prefetch_related('view_count').only('id', 'title', 'description', 'category', 'author', 'view_count').all()
+    queryset = contentModel.objects.select_related('category', 'author').prefetch_related(Prefetch('view_count', queryset=User.objects.all())).all()
     serializer_class = contentSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'description']
-
 
     @method_decorator(cache_page(60 * 60))
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
 
         if request.user.is_authenticated:
-            instance.view_count.add(request.user)
-
-        instance.save()
+            self.update_view_count(instance, request.user)
 
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+    
+    def update_view_count(self, instance, user):
+      
+        if user not in instance.view_count.all():
+            instance.view_count.add(user)
+            instance.save(update_fields=['view_count'])
 
 class ReviewViewsets(viewsets.ModelViewSet):
-    queryset = ReviewModel.objects.all()
+    queryset = ReviewModel.objects.select_related("user", "content").prefetch_related(
+        Prefetch("user", queryset=User.objects.all()),
+        Prefetch("user", queryset=User.objects.all())
+    ).all()
+    # queryset = ReviewModel.objects.all()
     serializer_class = reviewSeriailzer
 
     @method_decorator(cache_page(60 * 60 * 2))
@@ -75,7 +82,7 @@ class ReviewViewsets(viewsets.ModelViewSet):
         return super().retrieve(request, *args, **kwargs)
 
 class PlaylistViewsets(viewsets.ModelViewSet):
-    queryset = Playlist.objects.all()
+    queryset = Playlist.objects.select_related("user").all()
     serializer_class = PlayListSerializer
 
     @method_decorator(cache_page(60 * 60 * 2))

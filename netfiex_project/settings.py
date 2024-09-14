@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "user_auth",
     'rest_framework.authtoken',
     'channels',
+    "debug_toolbar",
    
 
     #Extranal 
@@ -41,17 +42,17 @@ REST_FRAMEWORK = {
     
 }
 MIDDLEWARE = [
-    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Moved cors middleware before common
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',  # Ensure it's listed only once
 ]
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_METHODS = [
@@ -103,14 +104,20 @@ DATABASES = {
 
 
 
-CACHES = {
+# CACHES = {
    
-    "default": {
+#     "default": {
         
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+#         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
 
      
-        "LOCATION": "unique-snowflake",
+#         "LOCATION": "unique-snowflake",
+#     }
+# }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
 
@@ -154,3 +161,8 @@ MEDIA_URL = '/media/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]

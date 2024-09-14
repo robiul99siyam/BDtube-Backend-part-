@@ -33,7 +33,7 @@ class UserRegisterViewset(APIView):
 
 
 class ImageViewset(viewsets.ModelViewSet):
-    queryset = ImageUser.objects.all()
+    queryset = ImageUser.objects.select_related("user").all()
     serializer_class = ImageSeralizer
     
     def get_serializer_context(self):
