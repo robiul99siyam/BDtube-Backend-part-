@@ -160,9 +160,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [BASE_DIR / 'static']  # If you have a custom static folder
-STATIC_ROOT = BASE_DIR / 'staticfiles_build'  # To collect static files for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles_build'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
