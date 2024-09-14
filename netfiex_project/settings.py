@@ -15,7 +15,8 @@ SECRET_KEY = 'django-insecure-^*-%*4@&(kwe#$_q251ocywn)0v5n^-+ug7)y56gf5hkirqzx1
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['.vercel.app','now.sh']
 
 INSTALLED_APPS = [
     "daphne",
@@ -158,6 +159,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [BASE_DIR / 'static']  # If you have a custom static folder
+STATIC_ROOT = BASE_DIR / 'staticfiles_build'  # To collect static files for deployment
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
