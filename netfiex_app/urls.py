@@ -18,6 +18,7 @@ urlpatterns = [
     path('category/<int:pk>/', views.CategoryViewsets.as_view()),
     path("videoWatch/",views.VideoWatchTimeViewset.as_view()),
     path("videoWatch/<int:pk>/",views.VideoWatchTimeViewset.as_view()),
+    path("location/",views.LoctionTrack.as_view())
    
 
 ]

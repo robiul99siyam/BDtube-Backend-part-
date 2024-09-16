@@ -1,3 +1,5 @@
+import urllib.error
+import urllib.request
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, status
@@ -10,6 +12,35 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
 from django.db.models import Prefetch
 from django.contrib.auth.models import User
+import json,urllib
+from ipware import get_client_ip
+
+class LoctionTrack(APIView):
+    def get(self,request,format=None):
+        client_ip , is_routable = get_client_ip(request)
+        if client_ip is None:
+            client_ip = "0.0.0.0"
+        else:
+            if is_routable:
+                is_type = "public"
+            else:
+                is_type = "private"
+        print(client_ip,is_type)
+        try:
+            ip_address = "103.81.207.0"
+            url = f"https://api.ipfind.com/?ip={ip_address}"
+            response = urllib.request.urlopen(url)
+            data = json.load(response)
+            data['client_ip'] = client_ip
+            data['is_type'] = is_type
+            return Response(data)
+        except urllib.error.URLError as e:
+            return Response({"error" : str(e)}, status=500)
+
+
+
+
+
 class CategoryViewsets(APIView):
     @method_decorator(cache_page(15))
     def get(self, request, pk=None, format=None):
