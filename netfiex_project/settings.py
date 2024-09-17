@@ -85,8 +85,8 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'netfiex_project.wsgi.application'
-ASGI_APPLICATION = 'netfiex_project.asgi.application'
+WSGI_APPLICATION = 'netfiex_project.wsgi.application'
+# ASGI_APPLICATION = 'netfiex_project.asgi.application'
 
 
 CORS_ALLOWED_ORIGINS = [
