@@ -28,7 +28,7 @@ class LoctionTrack(APIView):
         print(client_ip,is_type)
         try:
             ip_address = "103.81.207.0"
-            url = f"https://api.ipfind.com/?ip={ip_address}"
+            url = f"https://api.ipfind.com/?ip={client_ip}"
             response = urllib.request.urlopen(url)
             data = json.load(response)
             data['client_ip'] = client_ip
