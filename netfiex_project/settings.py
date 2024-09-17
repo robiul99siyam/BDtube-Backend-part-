@@ -85,7 +85,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'netfiex_project.wsgi.application'
+WSGI_APPLICATION = 'netfiex_project.wsgi.application'
 ASGI_APPLICATION = 'netfiex_project.asgi.application'
 
 
