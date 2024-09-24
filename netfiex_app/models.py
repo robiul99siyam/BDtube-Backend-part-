@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
 
 
 from django.utils import timezone
@@ -44,19 +42,6 @@ class contentModel(models.Model):
         return self.view_count.count()
 
 
-    def save(self, *args, **kwargs):
-        # Save the model instance
-        super(contentModel, self).save(*args, **kwargs)
-        
-        # Send a notification after saving
-        channels_layer = get_channel_layer()
-        async_to_sync(channels_layer.group_send)(
-            "notification",
-            {
-                "type": "notification.send",
-                "message": self.title,  
-            }
-        )
 
 
 class ReviewModel(models.Model):
