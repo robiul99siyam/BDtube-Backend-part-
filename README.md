@@ -57,7 +57,7 @@ source venv/bin/activate
 - Delete videos with DELETE requests.
 ## Interact with videos by liking and reviewing them through their respective endpoints.
 - Track watch time using the /videoWatch/ endpoint.
-## API Endpoints
+
 ## API Endpoints
 
 | Method | Endpoint                         | Description                                    |
