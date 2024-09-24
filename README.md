@@ -1,63 +1,53 @@
 # Project Title
-### Description
+## Description
 This project is a video management application that allows users to upload, update, and delete video content. It includes features for liking, reviewing, and tracking watch time for videos. Additionally, users can register and log in to manage their profiles and interact with content.
 
 ## Table of Contents
-### Features
+## Features
 - Technologies Used
 - Installation
 - Usage
 - API Endpoints
 - Models
-- Features
-  
-User registration and login system
-Video content upload, update, and deletion
-Like and review system for videos
-Watch time tracking
-Category management for organizing content
-Playlist creation for video collections
-Notification system for user interactions
-Location tracking of users
-Technologies Used
-Backend: Django, Django REST Framework
-Database: SQLite (or any other supported database)
-Frontend: (Optional if applicable)
-Other: Django Debug Toolbar, IPware for IP tracking
-Installation
-Clone the repository:
 
-bash
-Copy code
+## Features
+  
+- User registration and login system
+- Video content upload, update, and deletion
+- Like and review system for videos
+- Watch time tracking
+- Category management for organizing content
+- Playlist creation for video collections
+- Notification system for user interactions
+- Location tracking of users
+## Technologies Used
+- Backend: Django, Django REST Framework
+- Database: SQLite (or any other supported database)
+- Frontend: (Optional if applicable)
+- Other: Django Debug Toolbar, IPware for IP tracking
+## Installation
+```
+Clone the repository:
 git clone <repository-url>
 cd <repository-folder>
 Create a virtual environment:
+```
 
-bash
-Copy code
+```
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-Install dependencies:
+source venv/bin/activate
+```
+## Install dependencies:
 
-bash
-Copy code
-pip install -r requirements.txt
-Run migrations:
+``` pip install -r requirements.txt ```
+## Run migrations:
+``` python manage.py migrate ```
+## Create a superuser (optional for admin access):
+``` python manage.py createsuperuser ```
+## Run the development server:
 
-bash
-Copy code
-python manage.py migrate
-Create a superuser (optional for admin access):
-
-bash
-Copy code
-python manage.py createsuperuser
-Run the development server:
-
-bash
-Copy code
-python manage.py runserver
-Usage
+``` python manage.py runserver```
+## Usage
 Register a new user by sending a POST request to /account/create/.
 Log in with the registered user by sending a POST request to /account/login/.
 Manage video content:
