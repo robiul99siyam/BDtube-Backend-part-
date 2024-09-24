@@ -48,34 +48,28 @@ source venv/bin/activate
 
 ``` python manage.py runserver```
 ## Usage
-Register a new user by sending a POST request to /account/create/.
-Log in with the registered user by sending a POST request to /account/login/.
-Manage video content:
-Upload videos using the /content/ endpoint.
-Update video details using PUT requests.
-Delete videos with DELETE requests.
-Interact with videos by liking and reviewing them through their respective endpoints.
-Track watch time using the /videoWatch/ endpoint.
-API Endpoints
-Method	Endpoint	Description
-POST	/account/create/	Register a new user
-POST	/account/login/	Log in a user
-GET	/content/	Retrieve all video content
-POST	/content/	Upload a new video content
-PUT	/content/int:pk/	Update an existing video content
-DELETE	/content/int:pk/	Delete a video content
-POST	/video/int:video_id/like/	Like a video
-POST	/review/	Submit a review for a video
-GET	/videoWatch/	Retrieve watch time data
-POST	/videoWatch/	Track watch time for a video
-GET	/location/	Retrieve the location of the user
-Models
-User: Extends Django's built-in user model for authentication.
-CategoryModel: Manages video categories.
-ContentModel: Stores video details such as title, file, and language.
-ReviewModel: Stores user reviews for videos.
-Like: Manages likes on videos.
-Notification: Handles user notifications.
-Playlist: Manages user-created playlists.
-VideoWatchTime: Tracks the watch time for videos.
-ImageUser: Manages user profile images.
+- Register a new user by sending a POST request to /account/create/.
+- Log in with the registered user by sending a POST request to /account/login/.
+
+## Manage video content:
+- Upload videos using the /content/ endpoint.
+- Update video details using PUT requests.
+- Delete videos with DELETE requests.
+## Interact with videos by liking and reviewing them through their respective endpoints.
+- Track watch time using the /videoWatch/ endpoint.
+## API Endpoints
+## API Endpoints
+
+| Method | Endpoint                         | Description                                    |
+|--------|----------------------------------|------------------------------------------------|
+| POST   | /account/create/                 | Register a new user                           |
+| POST   | /account/login/                  | Log in a user                                 |
+| GET    | /content/                        | Retrieve all video content                     |
+| POST   | /content/                        | Upload a new video content                     |
+| PUT    | /content/<int:pk>/               | Update an existing video content               |
+| DELETE | /content/<int:pk>/               | Delete a video content                         |
+| POST   | /video/<int:video_id>/like/     | Like a video                                  |
+| POST   | /review/                         | Submit a review for a video                   |
+| GET    | /videoWatch/                     | Retrieve watch time data                       |
+| POST   | /videoWatch/                     | Track watch time for a video                  |
+| GET    | /location/                       | Retrieve the location of the user             |
